@@ -28,7 +28,7 @@ typedef Skeletonization::Skeleton Skeleton;
 typedef Skeleton::vertex_descriptor Skeleton_vertex;
 typedef Skeleton::edge_descriptor Skeleton_edge;
 
-typedef std::pair<Point, Vector> Pwn;
+typedef std::pair<Point, CGAL_Vector> Pwn;
 
 using namespace Eigen;
 
