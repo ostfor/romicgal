@@ -19,7 +19,7 @@
 // typedef CGAL::Simple_cartesian<double> Kernel;
 typedef CGAL::Exact_predicates_inexact_constructions_kernel Kernel;
 typedef Kernel::Point_3 Point;
-typedef Kernel::Vector_3 Vector;
+typedef Kernel::Vector_3 CGAL_Vector;
 typedef CGAL::Surface_mesh<Point> Triangle_mesh;
 typedef boost::graph_traits<Triangle_mesh>::vertex_descriptor vertex_descriptor;
 typedef CGAL::Mean_curvature_flow_skeletonization<Triangle_mesh>
@@ -109,13 +109,13 @@ std::pair<ArrayX3d, ArrayX3i> mesh_to_arrays(const Triangle_mesh &tmesh) {
     return std::pair<ArrayX3d, ArrayX3i>(vertex_array, triangles);
 }
 
-std::vector<Pwn> arrays_to_pcd(const ArrayX3d &point_array,
+std::vector<Pwn> arrays_to_pcd(const ArrayX3d &point_array, 
                                const ArrayX3d &normal_array) {
     std::vector<Pwn> points;
     size_t n_points = point_array.rows();
     for (size_t i = 0; i < n_points; i++) {
         Point pt(point_array(i, 0), point_array(i, 1), point_array(i, 2));
-        Vector n(normal_array(i, 0), normal_array(i, 1), normal_array(i, 2));
+        CGAL_Vector n(normal_array(i, 0), normal_array(i, 1), normal_array(i, 2));
         points.push_back(Pwn(pt, n));
     }
     return points;
